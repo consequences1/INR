@@ -27,15 +27,15 @@ https://api.xxxxx.com/lpay/agentpay/gateway
 |total_fee |交易金额 |String(24) |总金额，以分为单位，不允许 包含任何字、符号。| 是
 |pay_type |支付类型 |String(2)| 86:代付；| 是
 |body |商品名称| String| 商品标题/交易标题/订单标题/ 订单关键字等。 |是
-|bank_account| 收款人账 号 |String |收款人账号。 |是 
+|bank_account| 收款人账 号 |String |收款人银行账号或者UPI， ID。 |是 
 |account_holder |收款人姓 名| String |收款人姓名。 |是 
-|deposit_bank_code| 开户行代 码 |String |开户行代码。|参照附录 |是 
-|deposit_bank |开户行名 称| String |开户行名称。|参照附录 |是 
+|deposit_bank_code| 开户行代 码 |String |开户行代码。必填但是 不是必须正确，没有可随便填写|是
+|deposit_bank |开户行名 称| String |开户行名称。必填但是 不是必须正确，没有可随便填写|是
 |acct_type |转账类型 |String |bank：银行账户，wallet：用户钱包。 |是 
 |account_holder_mobile |开户人手 机号| String |开户人手机号。必填但是不是 必须正确 |是 
 |province |开户行所 属省份| String |开户行所属省份号。必填但是 不是必须正确，没有可随便填写 |是 
-|city |开户行所 属城市| String |开户行所属城市。必填但是不 是必须正确 |是 
-|sub_branch |收款方IFSC| String |收款方IFSC| 是 
+|city |开户行所 属城市| String |开户行所属城市。必填但是 不是必须正确，没有可随便填写 |是 
+|sub_branch |收款方IFSC| String |收款方IFSC，印度银行卡代付必须填正确的(IFSC)| 是 
 |account_holder_id| 收款方邮箱| String |收款方邮箱| 是 
 |sign |签名 |String(32)| 对支付信息使用MD5签名。| 是
 
