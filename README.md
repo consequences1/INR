@@ -40,7 +40,38 @@ https://api.xxxxx.com/lpay/agentpay/gateway
 |sign |签名 |String(32)| 对支付信息使用MD5签名。| 是
 
 
-First Header  | Second Header
-------------- | -------------
-Content Cell  | Content Cell
-Content Cell  | Content Cell
+## 2. 接入步骤
+### 2.1 生成订单MD5签名
+```html
+订单信息（商户订单号+交易金额+收款人账号+收款人姓名+开户行名称+开户人手机号 +商户号+商户秘钥）进行UTF-8编码的MD5编码。
+```
+### 2.2 请求支付网关接口
+1.使用POST方式请求网关，传递参数如下
+```html
+sign=XXX
+mch_id=XXXX
+out_trade_no=XXXXX
+total fee=XxxXXX
+pay_type=XX
+body=XXXXXXX
+```
+`备注：普通表单提交数据,非JSON数据}`
+
+2.接收返回JSON数据，数据如下∶
+JSON数据说明
+| 参数        | 参数名称   |  类型(长 度) |参数说明 |是否必填
+| --------   | -----:  | :----:  |:----  |:----:  |
+|result_code |结果代码 |Int |0：订单成功； 1：订单失败； 此处返回的是代付订单提交是否成功状态，不是 代付打款是否成功，代付是否成功通过代付查询 接口，或者是异步回调获取| 是 
+|err_msg| 错误信息 |String(256) |result_code=1时传递错误信息| 否 
+|out_trade_no| 商户订单号| String(24) |合作商户唯一的订单号。 |是 
+|transaction_id |平台订单号| String(24) |平台订单号。| 是
+
+
+实例数据
+```html
+{  
+  out_trade_no: "8000120170912170755", 
+  transaction_id: "80001c868000120170912170755",  
+  result_code: 0  
+} 
+```
