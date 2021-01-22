@@ -18,6 +18,7 @@ POST
 https://api.xxxxx.com/lpay/agentpay/gateway
 
 ### 1.3 下单参数说明
+### 参数说明 Tables
 | 参数        | 参数名称   |  类型(长 度) |参数说明 |是否必填
 | --------   | -----:  | :----:  |
 | mch_id    | 商户号  |  String(5)     |签约商户的商户号|是
