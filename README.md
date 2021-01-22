@@ -1,4 +1,4 @@
-# 支付代付接口文档
+# 印度支付---代付接口文档
 
 **文档属性**
 
@@ -31,19 +31,19 @@ https://api.xxxxx.com/lpay/agentpay/gateway
 |account_holder |收款人姓 名| String |收款人姓名。 |是 
 |deposit_bank_code| 开户行代 码 |String |开户行代码。|参照附录 |是 
 |deposit_bank |开户行名 称| String |开户行名称。|参照附录 |是 
-|acct_type |渠道类型 |String |1对私;2对公。 |是 
+|acct_type |转账类型 |String |bank：银行账户，wallet：用户钱包。 |是 
 |account_holder_mobile |开户人手 机号| String |开户人手机号。必填但是不是 必须正确 |是 
-|province |开户行所 属省份| String |开户行所属省份号。必填但是 不是必须正确 |是 
+|province |开户行所 属省份| String |开户行所属省份号。必填但是 不是必须正确，没有可随便填写 |是 
 |city |开户行所 属城市| String |开户行所属城市。必填但是不 是必须正确 |是 
-|sub_branch |开户支行 名称| String |开户支行名称。必填但是不是 必须正确| 是 
-|account_holder_id| 开户人身 份证号| String |开户人身份证号。必填但是不 是必须正确| 是 
+|sub_branch |收款方IFSC| String |收款方IFSC| 是 
+|account_holder_id| 收款方邮箱| String |收款方邮箱| 是 
 |sign |签名 |String(32)| 对支付信息使用MD5签名。| 是
 
 
 ## 2. 接入步骤
 ### 2.1 生成订单MD5签名
 ```html
-订单信息（商户订单号+交易金额+收款人账号+收款人姓名+开户行名称+开户人手机号 +商户号+商户秘钥）进行UTF-8编码的MD5编码。
+订单信息（商户订单号+交易金额+收款人账号+收款人姓名+收款方IFSC+开户人手机号 +商户号+商户秘钥）进行UTF-8编码的MD5编码。
 ```
 ### 2.2 请求支付网关接口
 1.使用POST方式请求网关，传递参数如下
