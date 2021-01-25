@@ -43,7 +43,8 @@ https://api.xxxxx.com/lpay/agentpay/gateway
 ## 2. 接入步骤
 ### 2.1 生成订单MD5签名
 ```html
-订单信息（商户订单号+交易金额+收款人账号+收款人姓名+收款方IFSC+开户人手机号 +商户号+商户秘钥）进行UTF-8编码的MD5编码。
+订单信息（商户订单号+交易金额+收款人账号+收款人姓名+开户行名称+开户人手机号 +商户号+商户秘钥）进行UTF-8编码的MD5编码。
+订单信息（user_out_trade_no + total_fee + bank_account + account_holder + deposit_bank + account_holder_mobile + user_mch_id+商户秘钥）进行UTF-8编码的MD5编码。
 ```
 ### 2.2 请求支付网关接口
 1.使用POST方式请求网关，传递参数如下
