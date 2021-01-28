@@ -4,7 +4,7 @@
 ## 目录
 
 - [H5支付下单接口](#H5支付下单接口)
-- [代付接口](#代付对接文档)
+- [代付接口](#代付接口)
 
 
 **文档属性**
@@ -17,8 +17,56 @@ H5支付通过浏览器或者APP的Webview直接跳转到生成支付信息URL�
 ## 1.1 请求方式 
 get方法
 浏览器或者Webview跳转
-##1.2 请求网关地址
+## 1.2 请求网关地址
 找管理员获取支付下单网关地址
+
+## 1.3 下单参数说明
+
+| 参数        | 参数名称   |  类型(长 度) |参数说明 |是否必填
+| --------   | -----:  | :----:  |:----:  |:----:  |
+| mch_id    | 商户号  |  String(5)     |签约商户的商户号|是
+|out_trade_no|商户订单 号| String(24)| 合作商户唯一的订单号。合作商户唯一的订单号,最长24位| 是
+|total_fee |交易金额 |String(24) |总金额，以分为单位，不允许 包含任何字、符号。| 是
+|pay_type |支付类型 |String(2)| 11：印度支付通道| 是
+|body |商品名称| String| 商品标题/交易标题/订单标题/ 订单关键字等。 |否
+|bank_code| 银行代码|String |银行代码，详情见本文档附录。 银行卡网关支付必填参数 |否 
+|card_type |银行卡类型 | String |借记卡：1 信用卡：2， 银行卡网关支付必填参数。 |否
+|card_no| 银行卡卡号|String |银行卡卡号，个别银联快捷支付通道，需要必传 该字段。 使用前请联系管理员|否
+|sign |签名| String(32) |对支付信息使用MD5签名|是
+|is_raw |是否原生支付 |Int |1：原生支付，没有回调地址； 2：有回调地址的Wap支付。（默认情况填1，有特殊情况管理员会通知） |是
+|callback_url |同步跳转地址| String(256) |付完成之后跳转到商户指定URL地址，个别通道 是无效的，如果有需要联系管理员确认（不是订 单通知地址,订单通知地址在支付系统后台配 置）。 |是 
+
+## 1.4. 接入步骤
+ 1.4.1 生成订单MD5签名
+ 
+ 订单信息（商户订单号+交易金额+商户号+商户秘钥）进行UTF-8编码后台再进行32位 小写MD5编码。 
+ 拼接方式是直接拼接，不包含符号+，比如订单号123456789，商户号abcd，拼接后是 123456789abcd 
+ 
+ 1.4.2 初始化配置参数 1. 根据下单参数说明生成GET请求的URL地址 
+ ```html
+ https://api.xxxxx.com:/lpay/pay/gateway? 
+ sign=XXX& 
+ mch_id=XXXX& 
+ out_trade_no=XXXXX& 
+ total_fee=XXXXXX& 
+ pay_type=XX& 
+ is_raw=1& 
+ body=XXXXXXX& 
+ callback_url=XXX
+```
+
+实例：
+```html
+1. https://api.xxxxx.com:8888/lpay/pay/gateway?
+sign=b1ad420f2233d6f257c0baf7b54f9481&mch_id=10009&out_trade_no=201710
+10170633626081&total_fee=1&pay_type=21&is_raw=1&body=%E5%A5%B6%E8%8C%B
+6&callback_url=http%3A%2F%2Fpay.bhwjq.com%2Flpay%2Fpay%2Fcomplete
+```
+备注：body和callback_url需要进行URLEncoder进行编码
+
+2. 通过浏览器或者Webview跳转上面生成的URL地址
+
+
 
 # 代付接口
 
