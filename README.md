@@ -31,7 +31,7 @@ https://api.xxxxx.com/lpay/agentpay/gateway
 |account_holder |收款人姓 名| String |收款人姓名。 |是 
 |deposit_bank_code| 开户行代 码 |String |开户行代码。必填但是 不是必须正确，没有可随便填写|是
 |deposit_bank |开户行名 称| String |开户行名称。必填但是 不是必须正确，没有可随便填写|是
-|acct_type |转账类型 |String |bank：银行账户，wallet：用户钱包。 |是 
+|acct_type |转账类型 |String |bank：银行账户，wallet：用户钱包，upi用户传upi。 |是 
 |account_holder_mobile |开户人手 机号| String |开户人手机号。必填但是不是 必须正确 |是 
 |province |开户行所 属省份| String |开户行所属省份号。必填但是 不是必须正确，没有可随便填写 |是 
 |city |开户行所 属城市| String |开户行所属城市。必填但是 不是必须正确，没有可随便填写 |是 
