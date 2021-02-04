@@ -50,7 +50,7 @@ get方法
  
  1.4.2 初始化配置参数 1. 根据下单参数说明生成GET请求的URL地址 
  ```html
- https://api.xxxxx.com:/lpay/pay/gateway? 
+ http://api.xxxxx.com/lpay/pay/gateway? 
  sign=XXX& 
  mch_id=XXXX& 
  out_trade_no=XXXXX& 
